@@ -1,1 +1,13 @@
 привет 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Моя первая страница</title>
+</head>
+<body>
+    <h1>Привет, мир!</h1>
+    <p>Это самый простой пример веб-страницы на HTML.</p>
+    <a href="https://example.com">Это ссылка на сайт</a>
+</body>
+</html>
