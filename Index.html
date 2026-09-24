@@ -1,13 +1,60 @@
-привет 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Моя первая страница</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <h1>Привет, мир!</h1>
-    <p>Это самый простой пример веб-страницы на HTML.</p>
-    <a href="https://example.com">Это ссылка на сайт</a>
+    <header>
+        <h2>Логотип</h2>
+        <nav>
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Добро пожаловать на мой сайт!</h1>
+        <p>Это простой пример структуры сайта на HTML и CSS. Вы можете менять этот текст и добавлять новые блоки.</p>
+    </main>
+    <footer>
+        <p>&copy; 2026 Мой сайт</p>
+    </footer>
 </body>
 </html>
