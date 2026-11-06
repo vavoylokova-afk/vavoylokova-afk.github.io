@@ -1,12 +1,21 @@
 h1 {
-    color: #fd0000;
+    color: #ff00b3;
     font-size: 24px;
     text-align: center;
-  }
-  
-  body {
-      background: rgb(34, 1, 1);
-/*    background-image: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); 
-    background-attachment: fixed;  */
+}
+body {
+    background: rgb(0, 0, 0);
     margin: 0;
-  }
+}
+#login {
+  text-align: center;
+}
+table {
+  border-color: rgb(90, 9, 70);
+}
+button {
+  background-color: #ff00b3;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 15px;
+}

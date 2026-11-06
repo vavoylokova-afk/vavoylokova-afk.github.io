@@ -7,21 +7,94 @@
 </head>
 <body>
 
-    <table style="height:50vh" border="1">
-        <tr>
-            <td style="width:20vw">
-                <ul>
-                    <li><a href="table.html">Таблица</a></li>
-                    <li><a href="bootstrap.html">Bootstrap</a></li>
-                    <li><a href="flutter.html">Flutter</a></li>
-                    <li><a href="flex.html">Flex</a></li>
-                </ul>
-            </td>
-            <td style="width:80vw">
-                <h1>Главная страница !!!!!!!!!!!!!!!!</h1>
-            </td>
-        </tr>
-    </table>
+    <!-- видно пока не авторизован -->
+    <div id="login">
+        <h1>Авторизуйтесь</h1>
+        <button id="LOGINgit">Войти в GitHub</button>
+        <button id="LOGINgoogle">Войти в Google</button>
+    </div>
 
+    <!-- видно только после входа -->
+    <div id="main-content" style="display: none;">
+        <div id="user-area" style="margin-bottom: 10px;">
+            <p>Вы вошли как: <strong id="user-name"></strong></p>
+            <button id="LOGOUTbtn">Выйти</button>
+        </div>
+
+        <table style="height:50vh" border="1">
+            <tr>
+                <td style="width:20vw">
+                    <ul>
+                        <li><a href="table.html">Таблица</a></li>
+                        <li><a href="bootstrap.html">Bootstrap</a></li>
+                        <li><a href="flutter.html">Flutter</a></li>
+                        <li><a href="flex.html">Flex</a></li>
+                    </ul>
+                </td>
+                <td style="width:80vw">
+                    <h1>Главная страница !!!!!!!!!!!!!!!!</h1>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-analytics.js";
+        import { getAuth, signInWithPopup, GithubAuthProvider, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyB3pamHohNz7TZka5JwiVQ7whJDKnsHnF8",
+          authDomain: "kukish-c5edc.firebaseapp.com",
+          projectId: "kukish-c5edc",
+          storageBucket: "kukish-c5edc.firebasestorage.app",
+          messagingSenderId: "537161035767",
+          appId: "1:537161035767:web:93a6a56916c36117d8c8f2",
+          measurementId: "G-TS6JKQXPZ0"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        // GitHub вход
+        const githubProvider = new GithubAuthProvider();
+        document.getElementById('LOGINgit').addEventListener('click', () => {
+          signInWithPopup(auth, githubProvider)
+            .then((result) => console.log("GitHub вход:", result.user.displayName))
+            .catch((error) => console.error("GitHub ошибка:", error.code, error.message));
+        });
+
+        // Google вход
+        const googleProvider = new GoogleAuthProvider();
+        document.getElementById('LOGINgoogle').addEventListener('click', () => {
+          signInWithPopup(auth, googleProvider)
+            .then((result) => console.log("Google вход:", result.user.displayName, result.user.email))
+            .catch((error) => console.error("Google ошибка:", error.code, error.message));
+        });
+
+        // Выход
+        document.getElementById('LOGOUTbtn').addEventListener('click', () => {
+          signOut(auth)
+            .then(() => console.log("Вы вышли из аккаунта"))
+            .catch((error) => console.error("Ошибка выхода:", error));
+        });
+
+        // Управление интерфейсом
+        onAuthStateChanged(auth, (user) => {
+          const loginArea = document.getElementById('login');
+          const mainContent = document.getElementById('main-content');
+          const userName = document.getElementById('user-name');
+
+          if (user) {
+            loginArea.style.display = 'none';
+            mainContent.style.display = 'block';
+            userName.textContent = user.displayName || user.email || 'Пользователь';
+          } else {
+            loginArea.style.display = 'block';
+            mainContent.style.display = 'none';
+          }
+        });
+    </script>
 </body>
 </html>
